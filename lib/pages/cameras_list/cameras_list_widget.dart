@@ -211,7 +211,7 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                           ),
                           FlutterFlowWebView(
                             content: 'https://192.168.1.100:8889/cam42/',
-                            bypass: false,
+                            bypass: true,
                             height: 252.7,
                             verticalScroll: false,
                             horizontalScroll: false,
