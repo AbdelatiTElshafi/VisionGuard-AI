@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:material_palette/material_palette.dart';
 import 'cameras_list_model.dart';
 export 'cameras_list_model.dart';
 
@@ -43,38 +42,6 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: Stack(
         children: [
-          RadialGrittyGradientShaderFill(
-            height: 300.0,
-            params: ShaderParams(values: {
-              'animSpeed': 0.0,
-              'colorCount': 3.0,
-              'contrast': 1.0,
-              'ditherScale': 0.95,
-              'ditherStrength': 0.0,
-              'exposure': 1.0,
-              'gradientCenterX': 0.5,
-              'gradientCenterY': 0.0,
-              'gradientOffset': -0.32,
-              'gradientScale': 1.29,
-              'noiseDensity': 800.0,
-              'noiseIntensity': 0.35,
-              'softness': 1.0,
-              'stippleStrength': 0.56
-            }, colors: {
-              'color0': FlutterFlowTheme.of(context).secondaryBackground,
-              'color1': FlutterFlowTheme.of(context).primaryBackground,
-              'color2': FlutterFlowTheme.of(context).primaryBackground,
-              'color3': Color(0x00808080),
-              'color4': Color(0x00808080),
-              'color5': Color(0x00808080),
-              'color6': Color(0x00808080),
-              'color7': Color(0x00808080),
-              'color8': Color(0x00808080),
-              'color9': Color(0x00808080)
-            }),
-            animationMode: ShaderAnimationMode.continuous,
-            cache: true,
-          ),
           Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
