@@ -177,11 +177,12 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                             ],
                           ),
                           FlutterFlowWebView(
-                            content: 'https://192.168.1.100:8889/cam42/',
-                            bypass: true,
+                            content:
+                                '<!DOCTYPE html>\n<html>\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<style>\n  body {\n    margin: 0;\n    background: black;\n  }\n  img {\n    width: 100%;\n    height: 100%;\n    object-fit: contain;\n  }\n</style>\n</head>\n<body>\n\n<img src=\"https://192.168.1.100:8889/cam42/\" />\n\n</body>\n</html>',
                             height: 252.7,
                             verticalScroll: false,
                             horizontalScroll: false,
+                            html: true,
                           ),
                         ].divide(SizedBox(
                             height: FlutterFlowTheme.of(context)
