@@ -7,15 +7,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:url_launcher/url_launcher.dart';
-
-Future<void> openVLC(String urlInput) async {
-  final Uri url = Uri.parse(urlInput);
-
-  if (!await launchUrl(
-    url,
-    mode: LaunchMode.externalApplication,
-  )) {
-    throw 'Could not launch VLC';
-  }
+String buildCameraUrl(String ip, String camNumber) {
+  return "https://$ip:8889/cam$camNumber";
 }

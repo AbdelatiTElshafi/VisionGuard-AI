@@ -1,8 +1,8 @@
+import '/backend/supabase/supabase.dart';
 import '/components/camera_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'cameras_list_model.dart';
@@ -149,62 +149,69 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          GridView(
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              crossAxisSpacing: FlutterFlowTheme.of(context)
-                                  .designToken
-                                  .spacing
-                                  .md,
-                              mainAxisSpacing: FlutterFlowTheme.of(context)
-                                  .designToken
-                                  .spacing
-                                  .md,
-                              childAspectRatio: 1.0,
+                          FutureBuilder<List<CamerasRow>>(
+                            future: CamerasTable().queryRows(
+                              queryFn: (q) => q,
                             ),
-                            shrinkWrap: true,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await actions.openVLC();
-                                },
-                                child: wrapWithModel(
-                                  model: _model.cameraCardModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: CameraCardWidget(
-                                    status: 'Online',
-                                    name: 'Cam-042: Main Entry',
-                                    zone: 'Warehouse A',
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
                                   ),
+                                );
+                              }
+                              List<CamerasRow> gridViewCamerasRowList =
+                                  snapshot.data!;
+
+                              return GridView.builder(
+                                padding: EdgeInsets.zero,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 1,
+                                  crossAxisSpacing: 16.0,
+                                  mainAxisSpacing: 5.0,
+                                  childAspectRatio: 1.2,
                                 ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            width: 400.0,
-                            height: 200.0,
-                            child: custom_widgets.RtspPlayerWidget(
-                              width: 400.0,
-                              height: 200.0,
-                              rtspUrl: 'rtsp://192.168.1.100:8554/cam42',
-                              autoPlay: false,
-                              showControls: true,
-                            ),
-                          ),
-                          Container(
-                            width: 400.0,
-                            height: 200.0,
-                            child: custom_widgets.CameraVlcPlayer(
-                              width: 400.0,
-                              height: 200.0,
-                              url: 'rtsp://192.168.1.100:8554/cam42',
-                            ),
+                                shrinkWrap: true,
+                                itemCount: gridViewCamerasRowList.length,
+                                itemBuilder: (context, gridViewIndex) {
+                                  final gridViewCamerasRow =
+                                      gridViewCamerasRowList[gridViewIndex];
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await actions.openVLC(
+                                        'V',
+                                      );
+                                    },
+                                    child: CameraCardWidget(
+                                      key: Key(
+                                          'Key3yk_${gridViewIndex}_of_${gridViewCamerasRowList.length}'),
+                                      status: valueOrDefault<String>(
+                                        gridViewCamerasRow.status,
+                                        'Online',
+                                      ),
+                                      name: gridViewCamerasRow.camName,
+                                      zone: 'Warehouse A',
+                                      camid: gridViewCamerasRow.camId,
+                                      serverip:
+                                          gridViewCamerasRow.serverLocalIp!,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ].divide(SizedBox(
                             height: FlutterFlowTheme.of(context)

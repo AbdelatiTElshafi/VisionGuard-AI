@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,11 +14,15 @@ class CameraCardWidget extends StatefulWidget {
     this.status,
     this.name,
     this.zone,
+    required this.camid,
+    required this.serverip,
   });
 
   final String? status;
   final String? name;
   final String? zone;
+  final String? camid;
+  final String? serverip;
 
   @override
   State<CameraCardWidget> createState() => _CameraCardWidgetState();
@@ -53,6 +58,17 @@ class _CameraCardWidgetState extends State<CameraCardWidget> {
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 4.0,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              offset: Offset(
+                0.0,
+                2.0,
+              ),
+              spreadRadius: 0.0,
+            )
+          ],
           borderRadius: BorderRadius.circular(
               FlutterFlowTheme.of(context).designToken.radius.lg),
           border: Border.all(
@@ -88,7 +104,7 @@ class _CameraCardWidgetState extends State<CameraCardWidget> {
                             .sm),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: widget.status == 'online'
+                            color: widget.status == 'Online'
                                 ? FlutterFlowTheme.of(context).success
                                 : FlutterFlowTheme.of(context).error,
                             borderRadius: BorderRadius.circular(
@@ -159,18 +175,14 @@ class _CameraCardWidgetState extends State<CameraCardWidget> {
             ),
             Container(
               child: Padding(
-                padding: EdgeInsets.all(
-                    FlutterFlowTheme.of(context).designToken.spacing.md),
+                padding: EdgeInsets.all(2.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      valueOrDefault<String>(
-                        widget.name,
-                        'Cam-042: Main Entry',
-                      ),
+                      'CAM - ${widget.camid} : ${widget.name}',
                       maxLines: 1,
                       style: FlutterFlowTheme.of(context).titleMedium.override(
                             font: GoogleFonts.inter(
@@ -249,98 +261,118 @@ class _CameraCardWidgetState extends State<CameraCardWidget> {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(
-                                  FlutterFlowTheme.of(context)
-                                      .designToken
-                                      .radius
-                                      .sm),
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Stack(
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              _model.camStreamURL =
+                                  await actions.buildCameraUrl(
+                                widget.serverip!,
+                                widget.serverip!,
+                              );
+                              await actions.openVLC(
+                                _model.camStreamURL!,
+                              );
+
+                              safeSetState(() {});
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).primary,
+                                borderRadius: BorderRadius.circular(
+                                    FlutterFlowTheme.of(context)
+                                        .designToken
+                                        .radius
+                                        .sm),
+                              ),
+                              child: Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
-                                children: [
-                                  Container(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .md,
-                                          FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .xs,
-                                          FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .md,
-                                          FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .xs),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.videocam_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            size: 16.0,
-                                          ),
-                                          Text(
-                                            'Live',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                child: Stack(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  children: [
+                                    Container(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            FlutterFlowTheme.of(context)
+                                                .designToken
+                                                .spacing
+                                                .md,
+                                            FlutterFlowTheme.of(context)
+                                                .designToken
+                                                .spacing
+                                                .xs,
+                                            FlutterFlowTheme.of(context)
+                                                .designToken
+                                                .spacing
+                                                .md,
+                                            FlutterFlowTheme.of(context)
+                                                .designToken
+                                                .spacing
+                                                .xs),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.videocam_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .primaryBackground,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          Container(
-                                            width: 0.0,
-                                            height: 0.0,
-                                          ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                              size: 16.0,
+                                            ),
+                                            Text(
+                                              'Live',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                            Container(
+                                              width: 0.0,
+                                              height: 0.0,
+                                            ),
+                                          ].divide(SizedBox(width: 8.0)),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 0.0,
-                                    height: 0.0,
-                                  ),
-                                ],
+                                    Container(
+                                      width: 0.0,
+                                      height: 0.0,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
