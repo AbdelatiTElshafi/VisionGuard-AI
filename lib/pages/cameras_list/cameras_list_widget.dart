@@ -1,7 +1,7 @@
 import '/components/camera_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_web_view.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'cameras_list_model.dart';
@@ -176,11 +176,14 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                               ),
                             ],
                           ),
-                          FlutterFlowWebView(
-                            content: 'http://192.168.1.100:8891/cam42/',
-                            height: 281.83,
-                            verticalScroll: false,
-                            horizontalScroll: false,
+                          Container(
+                            width: 400.0,
+                            height: 400.0,
+                            child: custom_widgets.CameraSecureWebView(
+                              width: 400.0,
+                              height: 400.0,
+                              url: 'https://192.168.1.100:8889/cam42',
+                            ),
                           ),
                         ].divide(SizedBox(
                             height: FlutterFlowTheme.of(context)
