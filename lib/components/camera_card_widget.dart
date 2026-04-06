@@ -270,7 +270,7 @@ class _CameraCardWidgetState extends State<CameraCardWidget> {
                               _model.camStreamURL =
                                   await actions.buildCameraUrl(
                                 widget.serverip!,
-                                widget.serverip!,
+                                widget.camid!,
                               );
                               await actions.openVLC(
                                 _model.camStreamURL!,
