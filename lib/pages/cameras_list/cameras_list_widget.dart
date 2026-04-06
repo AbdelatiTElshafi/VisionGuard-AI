@@ -178,13 +178,22 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                           ),
                           Container(
                             width: 400.0,
-                            height: 400.0,
+                            height: 200.0,
                             child: custom_widgets.RtspPlayerWidget(
                               width: 400.0,
-                              height: 400.0,
+                              height: 200.0,
                               rtspUrl: 'rtsp://192.168.1.100:8554/cam42',
-                              autoPlay: true,
+                              autoPlay: false,
                               showControls: true,
+                            ),
+                          ),
+                          Container(
+                            width: 400.0,
+                            height: 200.0,
+                            child: custom_widgets.CameraVlcPlayer(
+                              width: 400.0,
+                              height: 200.0,
+                              url: 'rtsp://192.168.1.100:8554/cam42',
                             ),
                           ),
                         ].divide(SizedBox(
