@@ -1,6 +1,7 @@
 import '/components/camera_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -165,13 +166,22 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                             ),
                             shrinkWrap: true,
                             children: [
-                              wrapWithModel(
-                                model: _model.cameraCardModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: CameraCardWidget(
-                                  status: 'Online',
-                                  name: 'Cam-042: Main Entry',
-                                  zone: 'Warehouse A',
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await actions.openVLC();
+                                },
+                                child: wrapWithModel(
+                                  model: _model.cameraCardModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: CameraCardWidget(
+                                    status: 'Online',
+                                    name: 'Cam-042: Main Entry',
+                                    zone: 'Warehouse A',
+                                  ),
                                 ),
                               ),
                             ],
