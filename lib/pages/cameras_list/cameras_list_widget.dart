@@ -179,10 +179,12 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                           Container(
                             width: 400.0,
                             height: 400.0,
-                            child: custom_widgets.CameraSecureWebView(
+                            child: custom_widgets.RtspPlayerWidget(
                               width: 400.0,
                               height: 400.0,
-                              url: 'https://192.168.1.100:8889/cam42',
+                              rtspUrl: 'rtsp://192.168.1.100:8554/cam42',
+                              autoPlay: true,
+                              showControls: true,
                             ),
                           ),
                         ].divide(SizedBox(
