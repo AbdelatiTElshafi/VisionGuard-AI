@@ -44,66 +44,75 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(5.0, 100.0, 5.0, 5.0),
             child: SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  FutureBuilder<List<CamerasRow>>(
-                    future: CamerasTable().queryRows(
-                      queryFn: (q) => q,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                  Flexible(
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: FutureBuilder<List<CamerasRow>>(
+                        future: CamerasTable().queryRows(
+                          queryFn: (q) => q,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      }
-                      List<CamerasRow> listViewCamerasRowList = snapshot.data!;
+                            );
+                          }
+                          List<CamerasRow> listViewCamerasRowList =
+                              snapshot.data!;
 
-                      return ListView.separated(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: listViewCamerasRowList.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 20.0),
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewCamerasRow =
-                              listViewCamerasRowList[listViewIndex];
-                          return InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await actions.openVLC(
-                                'V',
+                          return ListView.separated(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listViewCamerasRowList.length,
+                            separatorBuilder: (_, __) => SizedBox(height: 20.0),
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewCamerasRow =
+                                  listViewCamerasRowList[listViewIndex];
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await actions.openVLC(
+                                    'V',
+                                  );
+                                },
+                                child: CameraCardWidget(
+                                  key: Key(
+                                      'Keyd4d_${listViewIndex}_of_${listViewCamerasRowList.length}'),
+                                  status: listViewCamerasRow.status,
+                                  name: listViewCamerasRow.camName,
+                                  zone: 'Warehouse A',
+                                  camid: listViewCamerasRow.camId,
+                                  serverip: listViewCamerasRow.serverRemoteIp!,
+                                ),
                               );
                             },
-                            child: CameraCardWidget(
-                              key: Key(
-                                  'Key5j5_${listViewIndex}_of_${listViewCamerasRowList.length}'),
-                              status: listViewCamerasRow.status,
-                              name: listViewCamerasRow.camName,
-                              zone: 'Warehouse A',
-                              camid: listViewCamerasRow.camId,
-                              serverip: listViewCamerasRow.serverRemoteIp!,
-                            ),
                           );
                         },
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ],
               ),
