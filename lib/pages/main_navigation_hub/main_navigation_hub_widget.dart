@@ -1,4 +1,4 @@
-import '/components/section_header_widget.dart';
+import '/components/section_header/section_header_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -382,123 +382,137 @@ class _MainNavigationHubWidgetState extends State<MainNavigationHubWidget> {
                                     .designToken
                                     .spacing
                                     .md),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(
-                                    FlutterFlowTheme.of(context)
-                                        .designToken
-                                        .radius
-                                        .lg),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).divider,
-                                  width: 1.0,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(DashboardWidget.routeName);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(
+                                      FlutterFlowTheme.of(context)
+                                          .designToken
+                                          .radius
+                                          .lg),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).divider,
+                                    width: 1.0,
+                                  ),
                                 ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(
-                                    FlutterFlowTheme.of(context)
-                                        .designToken
-                                        .spacing
-                                        .lg),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 48.0,
-                                      height: 48.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius: BorderRadius.circular(
-                                            FlutterFlowTheme.of(context)
-                                                .designToken
-                                                .radius
-                                                .md),
+                                child: Padding(
+                                  padding: EdgeInsets.all(
+                                      FlutterFlowTheme.of(context)
+                                          .designToken
+                                          .spacing
+                                          .lg),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 48.0,
+                                        height: 48.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius: BorderRadius.circular(
+                                              FlutterFlowTheme.of(context)
+                                                  .designToken
+                                                  .radius
+                                                  .md),
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Icon(
+                                          Icons.dashboard_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 28.0,
+                                        ),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Icon(
-                                        Icons.dashboard_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 28.0,
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Dashboard',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
+                                      Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Dashboard',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .override(
+                                                  font: GoogleFonts.inter(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 17.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .titleMedium
                                                           .fontStyle,
+                                                  lineHeight: 1.4,
                                                 ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 17.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.4,
-                                              ),
-                                        ),
-                                        Text(
-                                          'Real-time system overview and performance stats',
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall
-                                              .override(
-                                                font: GoogleFonts.manrope(
+                                          ),
+                                          Text(
+                                            'Real-time system overview and performance stats',
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodySmall
+                                                .override(
+                                                  font: GoogleFonts.manrope(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .bodySmall
                                                           .fontStyle,
+                                                  lineHeight: 1.4,
                                                 ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontStyle,
-                                                lineHeight: 1.4,
-                                              ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ].divide(SizedBox(
-                                          height: FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .xs)),
-                                    ),
-                                  ].divide(SizedBox(
-                                      height: FlutterFlowTheme.of(context)
-                                          .designToken
-                                          .spacing
-                                          .md)),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ].divide(SizedBox(
+                                            height: FlutterFlowTheme.of(context)
+                                                .designToken
+                                                .spacing
+                                                .xs)),
+                                      ),
+                                    ].divide(SizedBox(
+                                        height: FlutterFlowTheme.of(context)
+                                            .designToken
+                                            .spacing
+                                            .md)),
+                                  ),
                                 ),
                               ),
                             ),

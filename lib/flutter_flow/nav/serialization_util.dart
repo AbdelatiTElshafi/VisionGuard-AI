@@ -207,6 +207,8 @@ dynamic deserializeParam<T>(
         switch (T) {
           case CamerasRow:
             return CamerasRow(data);
+          case ViolationsRow:
+            return ViolationsRow(data);
           default:
             return null;
         }

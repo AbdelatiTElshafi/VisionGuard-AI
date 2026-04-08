@@ -6,3 +6,4 @@ export 'row.dart';
 export 'table.dart';
 
 export 'tables/cameras.dart';
+export 'tables/violations.dart';

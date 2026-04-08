@@ -34,12 +34,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => MainNavigationHubWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
+          : MainNavigationHubWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => MainNavigationHubWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                )
+              : MainNavigationHubWidget(),
         ),
         FFRoute(
           name: MainNavigationHubWidget.routeName,
@@ -50,6 +70,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: CamerasListWidget.routeName,
           path: CamerasListWidget.routePath,
           builder: (context, params) => CamerasListWidget(),
+        ),
+        FFRoute(
+          name: DashboardWidget.routeName,
+          path: DashboardWidget.routePath,
+          builder: (context, params) => DashboardWidget(),
+        ),
+        FFRoute(
+          name: ReportDetailsWidget.routeName,
+          path: ReportDetailsWidget.routePath,
+          builder: (context, params) => ReportDetailsWidget(),
+        ),
+        FFRoute(
+          name: ReportDetails2Widget.routeName,
+          path: ReportDetails2Widget.routePath,
+          builder: (context, params) => ReportDetails2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

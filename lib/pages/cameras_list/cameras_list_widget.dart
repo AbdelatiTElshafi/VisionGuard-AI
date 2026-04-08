@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/camera_card_widget.dart';
+import '/components/camera_card/camera_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -145,7 +145,7 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -206,7 +206,7 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                                       zone: 'Warehouse A',
                                       camid: gridViewCamerasRow.camId,
                                       serverip:
-                                          gridViewCamerasRow.serverLocalIp!,
+                                          gridViewCamerasRow.serverRemoteIp!,
                                     ),
                                   );
                                 },

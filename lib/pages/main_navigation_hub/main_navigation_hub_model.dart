@@ -1,4 +1,4 @@
-import '/components/section_header_widget.dart';
+import '/components/section_header/section_header_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'main_navigation_hub_widget.dart' show MainNavigationHubWidget;
