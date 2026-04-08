@@ -43,379 +43,156 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: Stack(
         children: [
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      FlutterFlowTheme.of(context).designToken.spacing.lg,
-                      FlutterFlowTheme.of(context).designToken.spacing.lg,
-                      FlutterFlowTheme.of(context).designToken.spacing.lg,
-                      FlutterFlowTheme.of(context).designToken.spacing.md),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Connected Cameras',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .fontStyle,
-                                  ),
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .fontStyle,
-                                ),
-                          ),
-                          Text(
-                            '14 active devices across 3 zones',
-                            style:
-                                FlutterFlowTheme.of(context).bodySmall.override(
-                                      font: GoogleFonts.manrope(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .fontStyle,
-                                    ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: 44.0,
-                        height: 44.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(
-                              FlutterFlowTheme.of(context)
-                                  .designToken
-                                  .radius
-                                  .full),
-                        ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Icon(
-                          Icons.tune_rounded,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(
-                        FlutterFlowTheme.of(context).designToken.spacing.lg),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FutureBuilder<List<CamerasRow>>(
-                            future: CamerasTable().queryRows(
-                              queryFn: (q) => q,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  FutureBuilder<List<CamerasRow>>(
+                    future: CamerasTable().queryRows(
+                      queryFn: (q) => q,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
                             ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<CamerasRow> listViewCamerasRowList =
-                                  snapshot.data!;
+                          ),
+                        );
+                      }
+                      List<CamerasRow> listViewCamerasRowList = snapshot.data!;
 
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listViewCamerasRowList.length,
-                                separatorBuilder: (_, __) =>
-                                    SizedBox(height: 20.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewCamerasRow =
-                                      listViewCamerasRowList[listViewIndex];
-                                  return InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await actions.openVLC(
-                                        'V',
-                                      );
-                                    },
-                                    child: CameraCardWidget(
-                                      key: Key(
-                                          'Keye5t_${listViewIndex}_of_${listViewCamerasRowList.length}'),
-                                      status: listViewCamerasRow.status,
-                                      name: listViewCamerasRow.camName,
-                                      zone: 'Warehouse A',
-                                      camid: listViewCamerasRow.camId,
-                                      serverip:
-                                          listViewCamerasRow.serverRemoteIp!,
-                                    ),
-                                  );
-                                },
+                      return ListView.separated(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewCamerasRowList.length,
+                        separatorBuilder: (_, __) => SizedBox(height: 20.0),
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewCamerasRow =
+                              listViewCamerasRowList[listViewIndex];
+                          return InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await actions.openVLC(
+                                'V',
                               );
                             },
-                          ),
-                        ].divide(SizedBox(
-                            height: FlutterFlowTheme.of(context)
-                                .designToken
-                                .spacing
-                                .lg)),
-                      ),
-                    ),
+                            child: CameraCardWidget(
+                              key: Key(
+                                  'Key5j5_${listViewIndex}_of_${listViewCamerasRowList.length}'),
+                              status: listViewCamerasRow.status,
+                              name: listViewCamerasRow.camName,
+                              zone: 'Warehouse A',
+                              camid: listViewCamerasRow.camId,
+                              serverip: listViewCamerasRow.serverRemoteIp!,
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
-                ),
+                ],
               ),
-              Container(
-                height: 80.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      FlutterFlowTheme.of(context).designToken.spacing.lg,
-                      FlutterFlowTheme.of(context).designToken.spacing.md,
-                      FlutterFlowTheme.of(context).designToken.spacing.lg,
-                      FlutterFlowTheme.of(context).designToken.spacing.md),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+            ),
+          ),
+          Container(
+            height: 90.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).primaryBackground,
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(
+                  FlutterFlowTheme.of(context).designToken.spacing.lg,
+                  FlutterFlowTheme.of(context).designToken.spacing.lg,
+                  FlutterFlowTheme.of(context).designToken.spacing.lg,
+                  FlutterFlowTheme.of(context).designToken.spacing.md),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.dashboard_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Text(
-                            'Dashboard',
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
+                      Text(
+                        'Connected Cameras',
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .fontStyle,
+                            ),
                       ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.videocam_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                          Text(
-                            'Cameras',
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                  ),
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.report_problem_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Text(
-                            'Violations',
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.description_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Text(
-                            'Reports',
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.schedule_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Text(
-                            'Shifts',
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  font: GoogleFonts.inter(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
+                      Text(
+                        '14 active devices across 3 zones',
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              font: GoogleFonts.manrope(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
                       ),
                     ],
                   ),
-                ),
+                  Container(
+                    width: 44.0,
+                    height: 44.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(
+                          FlutterFlowTheme.of(context).designToken.radius.full),
+                    ),
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Icon(
+                      Icons.tune_rounded,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),
