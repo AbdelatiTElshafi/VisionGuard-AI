@@ -143,7 +143,6 @@ class _CamerasListWidgetState extends State<CamerasListWidget> {
                     padding: EdgeInsets.all(
                         FlutterFlowTheme.of(context).designToken.spacing.lg),
                     child: SingleChildScrollView(
-                      primary: false,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
