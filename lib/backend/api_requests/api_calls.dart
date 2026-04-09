@@ -150,6 +150,85 @@ class GetSystemAnalyticsCall {
 
 /// End SupabaseReports Group Code
 
+/// Start EdgeFunctions Group Code
+
+class EdgeFunctionsGroup {
+  static String getBaseUrl() =>
+      'https://sicwrmdxqrzopjpprgmo.supabase.co/functions/v1';
+  static Map<String, String> headers = {
+    'apikey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpY3dybWR4cXJ6b3BqcHByZ21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzI3NTEsImV4cCI6MjA5MTA0ODc1MX0.E0A-D-r91IYss3G0iFbPSmpO8VJkcjWoMSe4Vm2vAHM',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpY3dybWR4cXJ6b3BqcHByZ21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzI3NTEsImV4cCI6MjA5MTA0ODc1MX0.E0A-D-r91IYss3G0iFbPSmpO8VJkcjWoMSe4Vm2vAHM',
+    'Content-Type': 'application/json',
+  };
+  static SenddailyreportCall senddailyreportCall = SenddailyreportCall();
+  static SMTPMailCall sMTPMailCall = SMTPMailCall();
+}
+
+class SenddailyreportCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = EdgeFunctionsGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'senddailyreport',
+      apiUrl: '${baseUrl}/send-daily-report',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpY3dybWR4cXJ6b3BqcHByZ21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzI3NTEsImV4cCI6MjA5MTA0ODc1MX0.E0A-D-r91IYss3G0iFbPSmpO8VJkcjWoMSe4Vm2vAHM',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpY3dybWR4cXJ6b3BqcHByZ21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzI3NTEsImV4cCI6MjA5MTA0ODc1MX0.E0A-D-r91IYss3G0iFbPSmpO8VJkcjWoMSe4Vm2vAHM',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SMTPMailCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = EdgeFunctionsGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "to": "abdelatielshafi@gmail.com",
+  "subject": "SMTP test",
+  "html": "<h1>Mail sent</h1><p>Supabase SMTP is working.</p>"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SMTPMail',
+      apiUrl: '${baseUrl}/SMTP_Mail',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpY3dybWR4cXJ6b3BqcHByZ21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzI3NTEsImV4cCI6MjA5MTA0ODc1MX0.E0A-D-r91IYss3G0iFbPSmpO8VJkcjWoMSe4Vm2vAHM',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpY3dybWR4cXJ6b3BqcHByZ21vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzI3NTEsImV4cCI6MjA5MTA0ODc1MX0.E0A-D-r91IYss3G0iFbPSmpO8VJkcjWoMSe4Vm2vAHM',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End EdgeFunctions Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

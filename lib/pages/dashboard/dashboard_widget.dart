@@ -439,7 +439,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     flex: 1,
                                     child: FutureBuilder<List<ViolationsRow>>(
                                       future: ViolationsTable().queryRows(
-                                        queryFn: (q) => q,
+                                        queryFn: (q) => q.eqOrNull(
+                                          'violation_date',
+                                          supaSerialize<DateTime>(
+                                              getCurrentTimestamp),
+                                        ),
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
