@@ -47,4 +47,7 @@ class ViolationsRow extends SupabaseDataRow {
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
+
+  bool? get imageDeleted => getField<bool>('image_deleted');
+  set imageDeleted(bool? value) => setField<bool>('image_deleted', value);
 }

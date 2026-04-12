@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'event_tile_widget.dart' show EventTileWidget;
+import 'shift_cards_widget.dart' show ShiftCardsWidget;
 import 'package:flutter/material.dart';
 
-class EventTileModel extends FlutterFlowModel<EventTileWidget> {
+class ShiftCardsModel extends FlutterFlowModel<ShiftCardsWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -1,4 +1,5 @@
 import '/components/section_header/section_header_widget.dart';
+import '/components/zero_tire/zero_tire_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -520,23 +521,197 @@ class _MainNavigationHubWidgetState extends State<MainNavigationHubWidget> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0,
-                                0.0,
-                                0.0,
-                                FlutterFlowTheme.of(context)
-                                    .designToken
-                                    .spacing
-                                    .md),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(CamerasListWidget.routeName);
-                              },
+                          child: Builder(
+                            builder: (context) => Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  FlutterFlowTheme.of(context)
+                                      .designToken
+                                      .spacing
+                                      .md),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: ZeroTireWidget(),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(
+                                        FlutterFlowTheme.of(context)
+                                            .designToken
+                                            .radius
+                                            .lg),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).divider,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(
+                                        FlutterFlowTheme.of(context)
+                                            .designToken
+                                            .spacing
+                                            .lg),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: 48.0,
+                                          height: 48.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius: BorderRadius.circular(
+                                                FlutterFlowTheme.of(context)
+                                                    .designToken
+                                                    .radius
+                                                    .md),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Icon(
+                                            Icons.videocam_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 28.0,
+                                          ),
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Cameras',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleMedium
+                                                  .override(
+                                                    font: GoogleFonts.inter(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 17.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMedium
+                                                            .fontStyle,
+                                                    lineHeight: 1.4,
+                                                  ),
+                                            ),
+                                            Text(
+                                              'Live feeds, device health, and zone status',
+                                              maxLines: 2,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodySmall
+                                                  .override(
+                                                    font: GoogleFonts.manrope(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmall
+                                                              .fontStyle,
+                                                    ),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .fontStyle,
+                                                    lineHeight: 1.4,
+                                                  ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ].divide(SizedBox(
+                                              height:
+                                                  FlutterFlowTheme.of(context)
+                                                      .designToken
+                                                      .spacing
+                                                      .xs)),
+                                        ),
+                                      ].divide(SizedBox(
+                                          height: FlutterFlowTheme.of(context)
+                                              .designToken
+                                              .spacing
+                                              .md)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ].divide(SizedBox(
+                          width: FlutterFlowTheme.of(context)
+                              .designToken
+                              .spacing
+                              .md)),
+                    ),
+                    if (false)
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  FlutterFlowTheme.of(context)
+                                      .designToken
+                                      .spacing
+                                      .md),
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -578,7 +753,7 @@ class _MainNavigationHubWidgetState extends State<MainNavigationHubWidget> {
                                         alignment:
                                             AlignmentDirectional(0.0, 0.0),
                                         child: Icon(
-                                          Icons.videocam_rounded,
+                                          Icons.report_problem_rounded,
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
                                           size: 28.0,
@@ -592,7 +767,7 @@ class _MainNavigationHubWidgetState extends State<MainNavigationHubWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Cameras',
+                                            'Violations',
                                             style: FlutterFlowTheme.of(context)
                                                 .titleMedium
                                                 .override(
@@ -619,7 +794,7 @@ class _MainNavigationHubWidgetState extends State<MainNavigationHubWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            'Live feeds, device health, and zone status',
+                                            'AI-detected security events and incidents',
                                             maxLines: 2,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodySmall
@@ -664,409 +839,282 @@ class _MainNavigationHubWidgetState extends State<MainNavigationHubWidget> {
                               ),
                             ),
                           ),
-                        ),
-                      ].divide(SizedBox(
-                          width: FlutterFlowTheme.of(context)
-                              .designToken
-                              .spacing
-                              .md)),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0,
-                                0.0,
-                                0.0,
-                                FlutterFlowTheme.of(context)
-                                    .designToken
-                                    .spacing
-                                    .md),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(
-                                    FlutterFlowTheme.of(context)
-                                        .designToken
-                                        .radius
-                                        .lg),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).divider,
-                                  width: 1.0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(
-                                    FlutterFlowTheme.of(context)
-                                        .designToken
-                                        .spacing
-                                        .lg),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 48.0,
-                                      height: 48.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius: BorderRadius.circular(
-                                            FlutterFlowTheme.of(context)
-                                                .designToken
-                                                .radius
-                                                .md),
-                                      ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Icon(
-                                        Icons.report_problem_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 28.0,
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Violations',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 17.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.4,
-                                              ),
-                                        ),
-                                        Text(
-                                          'AI-detected security events and incidents',
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall
-                                              .override(
-                                                font: GoogleFonts.manrope(
-                                                  fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodySmall
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontStyle,
-                                                lineHeight: 1.4,
-                                              ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ].divide(SizedBox(
-                                          height: FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .xs)),
-                                    ),
-                                  ].divide(SizedBox(
-                                      height: FlutterFlowTheme.of(context)
-                                          .designToken
-                                          .spacing
-                                          .md)),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0,
-                                0.0,
-                                0.0,
-                                FlutterFlowTheme.of(context)
-                                    .designToken
-                                    .spacing
-                                    .md),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(
-                                    FlutterFlowTheme.of(context)
-                                        .designToken
-                                        .radius
-                                        .lg),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).divider,
-                                  width: 1.0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(
-                                    FlutterFlowTheme.of(context)
-                                        .designToken
-                                        .spacing
-                                        .lg),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 48.0,
-                                      height: 48.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius: BorderRadius.circular(
-                                            FlutterFlowTheme.of(context)
-                                                .designToken
-                                                .radius
-                                                .md),
-                                      ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Icon(
-                                        Icons.description_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 28.0,
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Reports',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 17.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium
-                                                        .fontStyle,
-                                                lineHeight: 1.4,
-                                              ),
-                                        ),
-                                        Text(
-                                          'Compliance logs and historical analytics',
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall
-                                              .override(
-                                                font: GoogleFonts.manrope(
-                                                  fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodySmall
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontStyle,
-                                                lineHeight: 1.4,
-                                              ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ].divide(SizedBox(
-                                          height: FlutterFlowTheme.of(context)
-                                              .designToken
-                                              .spacing
-                                              .xs)),
-                                    ),
-                                  ].divide(SizedBox(
-                                      height: FlutterFlowTheme.of(context)
-                                          .designToken
-                                          .spacing
-                                          .md)),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ].divide(SizedBox(
-                          width: FlutterFlowTheme.of(context)
-                              .designToken
-                              .spacing
-                              .md)),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0,
-                          FlutterFlowTheme.of(context).designToken.spacing.lg),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(
-                              FlutterFlowTheme.of(context)
-                                  .designToken
-                                  .radius
-                                  .lg),
-                          border: Border.all(
-                            color: FlutterFlowTheme.of(context).divider,
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(FlutterFlowTheme.of(context)
-                              .designToken
-                              .spacing
-                              .lg),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 56.0,
-                                height: 56.0,
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0,
+                                  0.0,
+                                  0.0,
+                                  FlutterFlowTheme.of(context)
+                                      .designToken
+                                      .spacing
+                                      .md),
+                              child: Container(
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                                      .secondaryBackground,
                                   borderRadius: BorderRadius.circular(
                                       FlutterFlowTheme.of(context)
                                           .designToken
                                           .radius
-                                          .md),
+                                          .lg),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).divider,
+                                    width: 1.0,
+                                  ),
                                 ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Icon(
-                                  Icons.schedule_rounded,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 32.0,
+                                child: Padding(
+                                  padding: EdgeInsets.all(
+                                      FlutterFlowTheme.of(context)
+                                          .designToken
+                                          .spacing
+                                          .lg),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 48.0,
+                                        height: 48.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius: BorderRadius.circular(
+                                              FlutterFlowTheme.of(context)
+                                                  .designToken
+                                                  .radius
+                                                  .md),
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Icon(
+                                          Icons.description_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 28.0,
+                                        ),
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Reports',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .override(
+                                                  font: GoogleFonts.inter(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 17.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleMedium
+                                                          .fontStyle,
+                                                  lineHeight: 1.4,
+                                                ),
+                                          ),
+                                          Text(
+                                            'Compliance logs and historical analytics',
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodySmall
+                                                .override(
+                                                  font: GoogleFonts.manrope(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodySmall
+                                                          .fontStyle,
+                                                  lineHeight: 1.4,
+                                                ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ].divide(SizedBox(
+                                            height: FlutterFlowTheme.of(context)
+                                                .designToken
+                                                .spacing
+                                                .xs)),
+                                      ),
+                                    ].divide(SizedBox(
+                                        height: FlutterFlowTheme.of(context)
+                                            .designToken
+                                            .spacing
+                                            .md)),
+                                  ),
                                 ),
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Shifts & Personnel',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
+                            ),
+                          ),
+                        ].divide(SizedBox(
+                            width: FlutterFlowTheme.of(context)
+                                .designToken
+                                .spacing
+                                .md)),
+                      ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0,
+                          FlutterFlowTheme.of(context).designToken.spacing.lg),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(ShiftsListWidget.routeName);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(
+                                FlutterFlowTheme.of(context)
+                                    .designToken
+                                    .radius
+                                    .lg),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).divider,
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(FlutterFlowTheme.of(context)
+                                .designToken
+                                .spacing
+                                .lg),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 56.0,
+                                  height: 56.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.circular(
+                                        FlutterFlowTheme.of(context)
+                                            .designToken
+                                            .radius
+                                            .md),
+                                  ),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Icon(
+                                    Icons.schedule_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 32.0,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Shifts & Personnel',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .titleMedium
                                                       .fontStyle,
+                                              lineHeight: 1.4,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontStyle,
-                                            lineHeight: 1.4,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Manage operator schedules and camera coverage assignments',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            font: GoogleFonts.manrope(
+                                      ),
+                                      Text(
+                                        'Manage operator schedules and camera coverage assignments',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodySmall
+                                            .override(
+                                              font: GoogleFonts.manrope(
+                                                fontWeight: FontWeight.normal,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall
                                                       .fontStyle,
+                                              lineHeight: 1.4,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall
-                                                    .fontStyle,
-                                            lineHeight: 1.4,
-                                          ),
-                                    ),
-                                  ].divide(SizedBox(
-                                      height: FlutterFlowTheme.of(context)
-                                          .designToken
-                                          .spacing
-                                          .xs)),
+                                      ),
+                                    ].divide(SizedBox(
+                                        height: FlutterFlowTheme.of(context)
+                                            .designToken
+                                            .spacing
+                                            .xs)),
+                                  ),
                                 ),
-                              ),
-                              Icon(
-                                Icons.chevron_right_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                            ].divide(SizedBox(
-                                width: FlutterFlowTheme.of(context)
-                                    .designToken
-                                    .spacing
-                                    .lg)),
+                                Icon(
+                                  Icons.chevron_right_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                              ].divide(SizedBox(
+                                  width: FlutterFlowTheme.of(context)
+                                      .designToken
+                                      .spacing
+                                      .lg)),
+                            ),
                           ),
                         ),
                       ),

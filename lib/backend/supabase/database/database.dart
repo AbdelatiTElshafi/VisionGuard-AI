@@ -6,4 +6,6 @@ export 'row.dart';
 export 'table.dart';
 
 export 'tables/cameras.dart';
+export 'tables/report_recipients.dart';
 export 'tables/violations.dart';
+export 'tables/work_shifts.dart';
