@@ -47,7 +47,7 @@ class _ZeroTireWidgetState extends State<ZeroTireWidget> {
         child: Container(
           width: 380.0,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primaryText,
+            color: FlutterFlowTheme.of(context).secondary,
             borderRadius: BorderRadius.circular(24.0),
             border: Border.all(
               color: Color(0x1AFFFFFF),
@@ -317,6 +317,8 @@ class _ZeroTireWidgetState extends State<ZeroTireWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         context.pushNamed(CamerasListWidget.routeName);
+
+                        Navigator.pop(context);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -424,8 +426,7 @@ class _ZeroTireWidgetState extends State<ZeroTireWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed(
-                                    MainNavigationHubWidget.routeName);
+                                Navigator.pop(context);
                               },
                               child: Container(
                                 child: Padding(

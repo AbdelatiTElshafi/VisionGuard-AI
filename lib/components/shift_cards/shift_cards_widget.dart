@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -93,40 +94,65 @@ class _ShiftCardsWidgetState extends State<ShiftCardsWidget> {
                             FlutterFlowTheme.of(context).titleMedium.fontStyle,
                       ),
                 ),
-                FlutterFlowIconButton(
-                  borderRadius:
-                      FlutterFlowTheme.of(context).designToken.radius.md,
-                  buttonSize: 40.0,
-                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                  icon: Icon(
-                    Icons.edit_rounded,
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    size: 20.0,
-                  ),
-                  onPressed: () async {
-                    context.pushNamed(
-                      ShiftSettingsWidget.routeName,
-                      queryParameters: {
-                        'newShift': serializeParam(
-                          false,
-                          ParamType.bool,
-                        ),
-                        'workingDays': serializeParam(
-                          widget.shiftWorkingDayes,
-                          ParamType.String,
-                          isList: true,
-                        ),
-                        'active': serializeParam(
-                          widget.acive,
-                          ParamType.bool,
-                        ),
-                        'shiftName': serializeParam(
-                          widget.shiftName,
-                          ParamType.String,
-                        ),
-                      }.withoutNulls,
-                    );
-                  },
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    FlutterFlowIconButton(
+                      borderRadius:
+                          FlutterFlowTheme.of(context).designToken.radius.md,
+                      buttonSize: 40.0,
+                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                      icon: Icon(
+                        Icons.edit_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 20.0,
+                      ),
+                      onPressed: () async {
+                        context.pushNamed(
+                          ShiftSettingsWidget.routeName,
+                          queryParameters: {
+                            'newShift': serializeParam(
+                              false,
+                              ParamType.bool,
+                            ),
+                            'workingDays': serializeParam(
+                              widget.shiftWorkingDayes,
+                              ParamType.String,
+                              isList: true,
+                            ),
+                            'active': serializeParam(
+                              widget.acive,
+                              ParamType.bool,
+                            ),
+                            'shiftName': serializeParam(
+                              widget.shiftName,
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
+                        );
+                      },
+                    ),
+                    FlutterFlowIconButton(
+                      borderRadius: 8.0,
+                      buttonSize: 40.0,
+                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                      icon: Icon(
+                        Icons.delete_forever,
+                        color: FlutterFlowTheme.of(context).error,
+                        size: 24.0,
+                      ),
+                      onPressed: () async {
+                        await WorkShiftsTable().delete(
+                          matchingRows: (rows) => rows.eqOrNull(
+                            'shift_name',
+                            widget.shiftName,
+                          ),
+                        );
+
+                        context.pushNamed(ShiftsListWidget.routeName);
+                      },
+                    ),
+                  ].divide(SizedBox(width: 10.0)),
                 ),
               ],
             ),

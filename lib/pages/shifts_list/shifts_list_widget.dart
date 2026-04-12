@@ -150,7 +150,6 @@ class _ShiftsListWidgetState extends State<ShiftsListWidget> {
                             snapshot.data!;
 
                         return SingleChildScrollView(
-                          primary: false,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
